@@ -1,0 +1,34 @@
+﻿@model Model.Tables.Category
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Detailing a Category";
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">Category Details</div>
+    <div class="panel-body">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                </span>
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer panel-info">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId }, new { @class = "btn btn-info" })
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })
+    </div>
+</div>
+@Html.Partial("~/Views/Products/_ByCategory.cshtml", Model.Products.ToList())
+@section ScriptPage {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('li').removeClass("active");
+            $('#liCategories').addClass("active");
+        });
+    </script>
+}
